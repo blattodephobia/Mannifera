@@ -8,10 +8,10 @@ namespace Mannifera.DataStructures
 {
     public class BinanceDepthStreamEventHandler
     {
-        public PricePointTracker Bids { get; } = new PricePointTracker(new MaxPriorityQueue<double>());
-        public PricePointTracker Asks { get; } = new PricePointTracker(new MinPriorityQueue<double>());
+        public PricePointTracker Bids { get; } = new PricePointTracker(new MinPriorityQueue<double>());
+        public PricePointTracker Asks { get; } = new PricePointTracker(new MaxPriorityQueue<double>());
 
-        public BinanceDepthStreamEventHandler(SnapshotDto? snapshot)
+        public BinanceDepthStreamEventHandler(SnapshotDto? snapshot = null)
         {
             if (snapshot?.Asks != null)
             {

@@ -25,7 +25,14 @@ namespace Mannifera.DataStructures
 
         public void UpdatePriceQuantity(PricePoint pricePoint)
         {
-            _pricePoints[pricePoint.PriceLevel] = pricePoint;
+            if (!_pricePoints.ContainsKey(pricePoint.PriceLevel))
+            {
+                Add(pricePoint);
+            }
+            else
+            {
+                _pricePoints[pricePoint.PriceLevel] = pricePoint;
+            }
         }
 
         public PricePoint GetBestPrice() => _pricePoints[_bestPriceTracker.Peek()];
