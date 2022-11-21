@@ -17,7 +17,8 @@
             return (currentElementIndex - 1) / 2;
         }
 
-        private List<T> _internalList = new List<T>();
+        private readonly List<T> _internalList = new List<T>();
+        private readonly Dictionary<T, int> _indexCache = new Dictionary<T, int>();
 
         protected PriorityQueueBase()
         {
@@ -45,6 +46,7 @@
         public void Enqueue(T item)
         {
             _internalList.Add(item);
+            UpdateIndex(item, Count - 1);
             PercolateUp(_internalList.Count - 1);
         }
 
@@ -69,6 +71,18 @@
             if (itemIndex >= 0)
             {
                 RemoveFromInternalList(itemIndex);
+            }
+        }
+
+        private void UpdateIndex(T item, int index)
+        {
+            if (_indexCache.ContainsKey(item))
+            {
+                _indexCache[item] = index;
+            }
+            else
+            {
+                _indexCache.Add(item, index);
             }
         }
 
@@ -120,13 +134,16 @@
         {
             if (elementIndex1 != elementIndex2)
             {
+                UpdateIndex(_internalList[elementIndex1], elementIndex2);
+                UpdateIndex(_internalList[elementIndex2], elementIndex1);
+
                 T tmp = _internalList[elementIndex1];
                 _internalList[elementIndex1] = _internalList[elementIndex2];
                 _internalList[elementIndex2] = tmp;
             }
         }
 
-        private int IndexOf(T item) => _internalList.IndexOf(item);
+        private int IndexOf(T item) => _indexCache.TryGetValue(item, out int result) ? result : -1;
 
         private bool IsInRange(int index)
         {
