@@ -8,14 +8,14 @@
 
             public CustomComparable(int value)
             {
-                this.Value = value;
+                Value = value;
             }
 
             public int CompareTo(CustomComparable? other)
             {
                 if (other == null) throw new ArgumentNullException(nameof(other));
 
-                return this.Value.CompareTo(other.Value);
+                return Value.CompareTo(other.Value);
             }
 
             public int Compare(CustomComparable x, CustomComparable y)
@@ -30,7 +30,7 @@
 
             public CustomPoco(int value)
             {
-                this.Value = value;
+                Value = value;
             }
         }
 
@@ -83,7 +83,7 @@
             [Test]
             public void ShouldAddMultipleItemsWithCustomIComparer()
             {
-                MinPriorityQueue<CustomPoco> queue = new MinPriorityQueue<CustomPoco>(new CustomComparer());
+                var queue = new MinPriorityQueue<CustomPoco>(new CustomComparer());
                 queue.Enqueue(new CustomPoco(5));
                 queue.Enqueue(new CustomPoco(3));
                 queue.Enqueue(new CustomPoco(6));
@@ -96,7 +96,7 @@
             [Test]
             public void ShouldAddMultipleItemsWithCustomComparisonDelegate()
             {
-                MinPriorityQueue<CustomPoco> queue = new MinPriorityQueue<CustomPoco>((x, y) => x.Value.CompareTo(y.Value));
+                var queue = new MinPriorityQueue<CustomPoco>((x, y) => x.Value.CompareTo(y.Value));
                 queue.Enqueue(new CustomPoco(5));
                 queue.Enqueue(new CustomPoco(3));
                 queue.Enqueue(new CustomPoco(6));
@@ -141,7 +141,7 @@
             [Test]
             public void ShouldRemoveCorrectlyWithCustomComparer()
             {
-                MinPriorityQueue<CustomPoco> queue = new MinPriorityQueue<CustomPoco>(new CustomComparer());
+                var queue = new MinPriorityQueue<CustomPoco>(new CustomComparer());
                 queue.Enqueue(new CustomPoco(5));
                 queue.Enqueue(new CustomPoco(3));
                 queue.Enqueue(new CustomPoco(6));
@@ -158,7 +158,7 @@
             [Test]
             public void ShouldRemoveCorrectlyWithCustomComparisonDelegate()
             {
-                MinPriorityQueue<CustomPoco> queue = new MinPriorityQueue<CustomPoco>((x, y) => x.Value.CompareTo(y.Value));
+                var queue = new MinPriorityQueue<CustomPoco>((x, y) => x.Value.CompareTo(y.Value));
                 queue.Enqueue(new CustomPoco(5));
                 queue.Enqueue(new CustomPoco(3));
                 queue.Enqueue(new CustomPoco(6));
@@ -242,7 +242,7 @@
             [Test]
             public void ShouldAcceptCustomIComparables()
             {
-                MinPriorityQueue<CustomComparable> queue = new MinPriorityQueue<CustomComparable>();
+                var queue = new MinPriorityQueue<CustomComparable>();
             }
 
             [Test]

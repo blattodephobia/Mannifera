@@ -50,60 +50,60 @@
             [Test]
             public void ShouldAddTwoItemsInOrder()
             {
-                MaxPriorityQueue<int> heap = new MaxPriorityQueue<int>();
-                heap.Enqueue(3);
-                heap.Enqueue(5);
+                var queue = new MaxPriorityQueue<int>();
+                queue.Enqueue(3);
+                queue.Enqueue(5);
 
-                Assert.AreEqual(5, heap.Peek());
+                Assert.AreEqual(5, queue.Peek());
             }
 
             [Test]
             public void ShouldAddTwoItemsInReverseOrder()
             {
-                MaxPriorityQueue<int> heap = new MaxPriorityQueue<int>();
-                heap.Enqueue(5);
-                heap.Enqueue(3);
+                var queue = new MaxPriorityQueue<int>();
+                queue.Enqueue(5);
+                queue.Enqueue(3);
 
-                Assert.AreEqual(5, heap.Peek());
+                Assert.AreEqual(5, queue.Peek());
             }
 
             [Test]
             public void ShouldAddMultipleItemsRandomly()
             {
-                MaxPriorityQueue<int> heap = new MaxPriorityQueue<int>();
-                heap.Enqueue(5);
-                heap.Enqueue(3);
-                heap.Enqueue(6);
-                heap.Enqueue(2);
-                heap.Enqueue(1);
+                var queue = new MaxPriorityQueue<int>();
+                queue.Enqueue(5);
+                queue.Enqueue(3);
+                queue.Enqueue(6);
+                queue.Enqueue(2);
+                queue.Enqueue(1);
 
-                Assert.AreEqual(6, heap.Peek());
+                Assert.AreEqual(6, queue.Peek());
             }
 
             [Test]
             public void ShouldAddMultipleItemsWithCustomIComparer()
             {
-                MaxPriorityQueue<CustomPoco> heap = new MaxPriorityQueue<CustomPoco>(new CustomComparer());
-                heap.Enqueue(new CustomPoco(5));
-                heap.Enqueue(new CustomPoco(3));
-                heap.Enqueue(new CustomPoco(6));
-                heap.Enqueue(new CustomPoco(2));
-                heap.Enqueue(new CustomPoco(1));
+                MaxPriorityQueue<CustomPoco> queue = new MaxPriorityQueue<CustomPoco>(new CustomComparer());
+                queue.Enqueue(new CustomPoco(5));
+                queue.Enqueue(new CustomPoco(3));
+                queue.Enqueue(new CustomPoco(6));
+                queue.Enqueue(new CustomPoco(2));
+                queue.Enqueue(new CustomPoco(1));
 
-                Assert.AreEqual(6, heap.Peek().Value);
+                Assert.AreEqual(6, queue.Peek().Value);
             }
 
             [Test]
             public void ShouldAddMultipleItemsWithCustomComparisonDelegate()
             {
-                MaxPriorityQueue<CustomPoco> heap = new MaxPriorityQueue<CustomPoco>((x, y) => x.Value.CompareTo(y.Value));
-                heap.Enqueue(new CustomPoco(5));
-                heap.Enqueue(new CustomPoco(3));
-                heap.Enqueue(new CustomPoco(6));
-                heap.Enqueue(new CustomPoco(2));
-                heap.Enqueue(new CustomPoco(1));
+                var queue = new MaxPriorityQueue<CustomPoco>((x, y) => x.Value.CompareTo(y.Value));
+                queue.Enqueue(new CustomPoco(5));
+                queue.Enqueue(new CustomPoco(3));
+                queue.Enqueue(new CustomPoco(6));
+                queue.Enqueue(new CustomPoco(2));
+                queue.Enqueue(new CustomPoco(1));
 
-                Assert.AreEqual(6, heap.Peek().Value);
+                Assert.AreEqual(6, queue.Peek().Value);
             }
         }
 
@@ -113,63 +113,63 @@
             [Test]
             public void ShouldRemoveCorrectly1()
             {
-                MaxPriorityQueue<int> heap = new MaxPriorityQueue<int>();
-                heap.Enqueue(3);
-                heap.Enqueue(5);
+                var queue = new MaxPriorityQueue<int>();
+                queue.Enqueue(3);
+                queue.Enqueue(5);
 
-                Assert.AreEqual(5, heap.Dequeue());
-                Assert.AreEqual(3, heap.Peek());
+                Assert.AreEqual(5, queue.Dequeue());
+                Assert.AreEqual(3, queue.Peek());
             }
 
             [Test]
             public void ShouldRemoveCorrectly2()
             {
-                MaxPriorityQueue<int> heap = new MaxPriorityQueue<int>();
-                heap.Enqueue(5);
-                heap.Enqueue(3);
-                heap.Enqueue(6);
-                heap.Enqueue(2);
-                heap.Enqueue(1);
+                var queue = new MaxPriorityQueue<int>();
+                queue.Enqueue(5);
+                queue.Enqueue(3);
+                queue.Enqueue(6);
+                queue.Enqueue(2);
+                queue.Enqueue(1);
 
-                Assert.AreEqual(6, heap.Dequeue());
-                Assert.AreEqual(5, heap.Dequeue());
-                Assert.AreEqual(3, heap.Dequeue());
-                Assert.AreEqual(2, heap.Dequeue());
-                Assert.AreEqual(1, heap.Dequeue());
+                Assert.AreEqual(6, queue.Dequeue());
+                Assert.AreEqual(5, queue.Dequeue());
+                Assert.AreEqual(3, queue.Dequeue());
+                Assert.AreEqual(2, queue.Dequeue());
+                Assert.AreEqual(1, queue.Dequeue());
             }
 
             [Test]
             public void ShouldRemoveCorrectlyWithCustomComparer()
             {
-                MaxPriorityQueue<CustomPoco> heap = new MaxPriorityQueue<CustomPoco>(new CustomComparer());
-                heap.Enqueue(new CustomPoco(5));
-                heap.Enqueue(new CustomPoco(3));
-                heap.Enqueue(new CustomPoco(6));
-                heap.Enqueue(new CustomPoco(2));
-                heap.Enqueue(new CustomPoco(1));
+                var queue = new MaxPriorityQueue<CustomPoco>(new CustomComparer());
+                queue.Enqueue(new CustomPoco(5));
+                queue.Enqueue(new CustomPoco(3));
+                queue.Enqueue(new CustomPoco(6));
+                queue.Enqueue(new CustomPoco(2));
+                queue.Enqueue(new CustomPoco(1));
 
-                Assert.AreEqual(6, heap.Dequeue().Value);
-                Assert.AreEqual(5, heap.Dequeue().Value);
-                Assert.AreEqual(3, heap.Dequeue().Value);
-                Assert.AreEqual(2, heap.Dequeue().Value);
-                Assert.AreEqual(1, heap.Dequeue().Value);
+                Assert.AreEqual(6, queue.Dequeue().Value);
+                Assert.AreEqual(5, queue.Dequeue().Value);
+                Assert.AreEqual(3, queue.Dequeue().Value);
+                Assert.AreEqual(2, queue.Dequeue().Value);
+                Assert.AreEqual(1, queue.Dequeue().Value);
             }
 
             [Test]
             public void ShouldRemoveCorrectlyWithCustomComparisonDelegate()
             {
-                MaxPriorityQueue<CustomPoco> heap = new MaxPriorityQueue<CustomPoco>((x, y) => x.Value.CompareTo(y.Value));
-                heap.Enqueue(new CustomPoco(5));
-                heap.Enqueue(new CustomPoco(3));
-                heap.Enqueue(new CustomPoco(6));
-                heap.Enqueue(new CustomPoco(2));
-                heap.Enqueue(new CustomPoco(1));
+                var queue = new MaxPriorityQueue<CustomPoco>((x, y) => x.Value.CompareTo(y.Value));
+                queue.Enqueue(new CustomPoco(5));
+                queue.Enqueue(new CustomPoco(3));
+                queue.Enqueue(new CustomPoco(6));
+                queue.Enqueue(new CustomPoco(2));
+                queue.Enqueue(new CustomPoco(1));
 
-                Assert.AreEqual(6, heap.Dequeue().Value);
-                Assert.AreEqual(5, heap.Dequeue().Value);
-                Assert.AreEqual(3, heap.Dequeue().Value);
-                Assert.AreEqual(2, heap.Dequeue().Value);
-                Assert.AreEqual(1, heap.Dequeue().Value);
+                Assert.AreEqual(6, queue.Dequeue().Value);
+                Assert.AreEqual(5, queue.Dequeue().Value);
+                Assert.AreEqual(3, queue.Dequeue().Value);
+                Assert.AreEqual(2, queue.Dequeue().Value);
+                Assert.AreEqual(1, queue.Dequeue().Value);
             }
         }
 
@@ -179,23 +179,23 @@
             [Test]
             public void SetsCountCorrectly1()
             {
-                MaxPriorityQueue<int> heap = new MaxPriorityQueue<int>();
-                Assert.AreEqual(0, heap.Count);
+                var queue = new MaxPriorityQueue<int>();
+                Assert.AreEqual(0, queue.Count);
 
-                heap.Enqueue(5);
-                Assert.AreEqual(1, heap.Count);
+                queue.Enqueue(5);
+                Assert.AreEqual(1, queue.Count);
             }
 
             [Test]
             public void SetsCountCorrectly2()
             {
-                MaxPriorityQueue<int> heap = new MaxPriorityQueue<int>();
+                var queue = new MaxPriorityQueue<int>();
 
-                heap.Enqueue(5);
-                Assert.AreEqual(1, heap.Count);
+                queue.Enqueue(5);
+                Assert.AreEqual(1, queue.Count);
 
-                heap.Dequeue();
-                Assert.AreEqual(0, heap.Count);
+                queue.Dequeue();
+                Assert.AreEqual(0, queue.Count);
             }
         }
 
@@ -205,7 +205,7 @@
             [Test]
             public void ShouldAcceptCustomIComparables()
             {
-                MaxPriorityQueue<CustomComparable> heap = new MaxPriorityQueue<CustomComparable>();
+                var queue = new MaxPriorityQueue<CustomComparable>();
             }
 
             [Test]

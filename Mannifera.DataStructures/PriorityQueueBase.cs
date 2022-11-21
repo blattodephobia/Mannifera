@@ -31,6 +31,7 @@ namespace Mannifera.DataStructures
             {
                 throw new InvalidOperationException($"The default constructor of this type expects that the generic type argument T implements {typeof(IComparable<>)}.");
             }
+
             Comparer = (x, y) => ((IComparable<T>)x).CompareTo(y);
         }
 
@@ -105,7 +106,7 @@ namespace Mannifera.DataStructures
 
         protected Func<T, T, int> Comparer { get; private set; }
 
-        protected void PercolateUp(int index)
+        private void PercolateUp(int index)
         {
             int parentIndex = GetParentIndex(index);
             if (PriorityCompare(_internalList[index], _internalList[parentIndex]) < 0)
@@ -115,7 +116,7 @@ namespace Mannifera.DataStructures
             }
         }
 
-        protected void PercolateDown(int index)
+        private void PercolateDown(int index)
         {
             int bottomElementIndex = index;
             int leftChildIndex = GetLeftChildIndex(index);
