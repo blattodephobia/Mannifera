@@ -1,6 +1,6 @@
 ﻿namespace Mannifera.DataStructures
 {
-    public class MinPriorityQueue<T> : PriorityQueueBase<T>
+    public class MinPriorityQueue<T> : PriorityQueueBase<T> where T : notnull
     {
         public MinPriorityQueue() :
             base()

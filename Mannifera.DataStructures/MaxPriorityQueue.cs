@@ -1,6 +1,6 @@
 ﻿namespace Mannifera.DataStructures
 {
-    public class MaxPriorityQueue<T> : PriorityQueueBase<T>
+    public class MaxPriorityQueue<T> : PriorityQueueBase<T> where T : notnull
     {
         public MaxPriorityQueue() :
             base()

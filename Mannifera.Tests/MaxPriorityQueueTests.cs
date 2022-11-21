@@ -11,8 +11,10 @@
                 Value = value;
             }
 
-            public int CompareTo(CustomComparable other)
+            public int CompareTo(CustomComparable? other)
             {
+                if (other == null) throw new ArgumentNullException(nameof(other));
+
                 return Value.CompareTo(other.Value);
             }
 
@@ -34,8 +36,10 @@
 
         class CustomComparer : IComparer<CustomPoco>
         {
-            public int Compare(CustomPoco x, CustomPoco y)
+            public int Compare(CustomPoco? x, CustomPoco? y)
             {
+                if (x == null || y == null) throw new ArgumentNullException();
+
                 return x.Value.CompareTo(y.Value);
             }
         }

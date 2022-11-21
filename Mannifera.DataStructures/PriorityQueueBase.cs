@@ -1,17 +1,22 @@
-﻿namespace Mannifera.DataStructures
+﻿using System.Diagnostics;
+
+namespace Mannifera.DataStructures
 {
-    public abstract class PriorityQueueBase<T>
+    public abstract class PriorityQueueBase<T> where T : notnull
     {
+        [DebuggerStepThrough]
         private static int GetLeftChildIndex(int currentElementIndex)
         {
             return currentElementIndex * 2 + 1;
         }
 
+        [DebuggerStepThrough]
         private static int GetRightChildIndex(int currentElementIndex)
         {
             return currentElementIndex * 2 + 2;
         }
 
+        [DebuggerStepThrough]
         private static int GetParentIndex(int currentElementIndex)
         {
             return (currentElementIndex - 1) / 2;

@@ -24,11 +24,13 @@ namespace Mannifera.DataStructures.Tests
      ]
 }
 ";
-                SnapshotDto result = JsonConvert.DeserializeObject<SnapshotDto>(sampleJson, new PricePointJsonConverter());
-                Assert.That(result.Asks, Is.Not.Null);
-                Assert.That(result.Asks!.Count, Is.EqualTo(3));
-                Assert.That(result.Bids, Is.Not.Null);
-                Assert.That(result.Bids!.Count, Is.EqualTo(3));
+                SnapshotDto? result = JsonConvert.DeserializeObject<SnapshotDto>(sampleJson, new PricePointJsonConverter());
+
+                Assert.That(result, Is.Not.Null);
+                Assert.That(result!.Asks, Is.Not.Null);
+                Assert.That(result!.Asks!.Count, Is.EqualTo(3));
+                Assert.That(result!.Bids, Is.Not.Null);
+                Assert.That(result!.Bids!.Count, Is.EqualTo(3));
 
                 var expectedBids = new[]
                 {
